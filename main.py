@@ -28,7 +28,7 @@ app.add_middleware(
 class InsectIdentificationService:
     def __init__(self):
         self.api_key = os.getenv("ROBOFLOW_API_KEY", "NVfp8h9atJEAWzsw1eZ0")
-        self.model_id = "insect-identification-rweyy/7"
+        self.model_id = "insect-identification-rweyy/9"
         self.base_url = "https://detect.roboflow.com"
     
     def create_annotated_image(self, image: Image.Image, predictions: list) -> str:
