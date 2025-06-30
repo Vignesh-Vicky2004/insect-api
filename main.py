@@ -307,12 +307,19 @@ async def root():
 
 @app.get("/health")
 async def health_check():
-    return {
-        "status": "healthy", 
-        "service": "enhanced-insect-identification",
-        "yolo_loaded": insect_service.yolo_model is not None,
-        "bioclip_loaded": insect_service.bioclip_model is not None
-    }
+    try:
+        return {
+            "status": "healthy", 
+            "service": "enhanced-insect-identification",
+            "yolo_loaded": insect_service.yolo_model is not None,
+            "bioclip_loaded": insect_service.bioclip_model is not None
+        }
+    except Exception as e:
+        return {
+            "status": "error",
+            "message": str(e)
+        }
+
 
 @app.post("/identify")
 async def identify_insect(image: UploadFile = File(...)):
